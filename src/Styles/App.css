@@ -1,0 +1,17 @@
+body {
+  height: 70vh;
+  width: 100%;
+  font-family: 'Roboto';
+  font-style: 'normal';
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(./fonts/Roboto-Regular.ttf) format('opentype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 700;
+  src: local('Roboto'), url(./fonts/Roboto-Bold.ttf) format('opentype');
+}
