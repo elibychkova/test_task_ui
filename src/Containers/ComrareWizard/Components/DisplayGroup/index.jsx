@@ -1,18 +1,20 @@
 import React from 'react';
-import { StyledBars, StyledGrid } from './Styles';
+import { StyledIcon, IconContainer } from './Styles';
+import { faBars, faThLarge } from '@fortawesome/free-solid-svg-icons';
 
-export const DisplayGroup = ({getDisplayType}) => {
-
+export const DisplayGroup = ({ getDisplayType }) => {
   const handleDisplay = (ev) => {
-    console.log('ev.target.name :>> ', ev.target.name);
-    // getDisplayType(ev.target.id);
+    getDisplayType(ev.target.id);
   };
-
 
   return (
     <>
-      <StyledGrid name={'grid'} onClick={handleDisplay} />
-      <StyledBars name={'row'} onClick={handleDisplay} />
+      <IconContainer onClick={handleDisplay} id="grid">
+        <StyledIcon icon={faThLarge} />
+      </IconContainer>
+      <IconContainer onClick={handleDisplay} id="row">
+        <StyledIcon icon={faBars} />
+      </IconContainer>
     </>
   );
 };

@@ -1,23 +1,15 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faThLarge } from '@fortawesome/free-solid-svg-icons';
 
-export const StyledBars = styled(FontAwesomeIcon).attrs({
-  icon: faBars,
-})`
-  color: #7e7e7e;
-  font-size: 35px;
+export const IconContainer = styled.span`
   cursor: pointer;
-  font-weight: 500 !important;
-  margin: 0 8px;
 `;
 
-export const StyledGrid = styled(FontAwesomeIcon).attrs({
-  icon: faThLarge,
-})`
+export const StyledIcon = styled(FontAwesomeIcon)`
   color: #7e7e7e;
   font-size: 35px;
   cursor: pointer;
   font-weight: 500 !important;
   margin: 0 8px;
+  pointer-events: none;
 `;

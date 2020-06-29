@@ -1,5 +1,5 @@
 [
-    {
+    {   "id": 1,
         "manufacturer": "Tesla",
         "company_info": {
             "founded_At": 1057017600,
@@ -47,6 +47,7 @@
         ]
     },
     {
+        "id": 2,
         "manufacturer": "Jaguar",
         "company_info": {
             "founded_At": -1493510400,
@@ -94,6 +95,7 @@
         ]
     },
     {
+        "id": 3,
         "manufacturer": "BMW",
         "company_info": {
             "founded_At": -1493510400,
@@ -141,6 +143,7 @@
         ]
     },
     {
+        "id": 4,
         "manufacturer": "Opel",
         "company_info": {
             "founded_At": -4542480000,
@@ -188,6 +191,7 @@
         ]
     },
     {
+        "id": 5,
         "manufacturer": "Bugatti",
         "company_info": {
             "founded_At": -1924992000,
@@ -221,6 +225,7 @@
         ]
     },
     {
+        "id": 6,
         "manufacturer": "Ford",
         "company_info": {
             "founded_At": -2100038400,
@@ -254,6 +259,7 @@
         ]
     },
     {
+        "id": 7,
         "manufacturer": "Lada",
         "company_info": {
             "founded_At": -126230400,
@@ -287,6 +293,7 @@
         ]
     },
     {
+        "id": 8,
         "manufacturer": "Audi",
         "company_info": {
             "founded_At": -1908057600,
@@ -320,6 +327,7 @@
         ]
     },
     {
+        "id": 9,
         "manufacturer": "Mercedes",
         "company_info": {
             "founded_At": -1373241600,
@@ -353,6 +361,7 @@
         ]
     },
     {
+        "id": 10,
         "manufacturer": "Mitsubishi",
         "company_info": {
             "founded_At": -3155673600,
