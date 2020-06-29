@@ -12,33 +12,30 @@ import {
   ActionContainer,
   AdjustmentSection,
 } from './Styles';
-import { StepButton, ActionButton, SearchBar, Dropdown } from './Components';
+import { StepButton, ActionButton, SearchBar, Dropdown, DisplayGroup } from './Components';
 import { ManufacturersList } from './Components/ManufacturersList';
-import { sort } from './Utils';
 
 export class CompareWizard extends PureComponent {
-
   state = {
     inputValue: '',
     dropdownValue: 'asc',
-  }
+    displayType: 'grid'
+  };
 
   componentDidMount() {
     this.props.getManufacturers();
   }
 
-  inputChange = (ev) => this.setState({ inputValue: ev.target.value })
-  toggle = () => this.setState({ dropdownOpen: !this.state.dropdownOpen })
-  getValue = (value) => this.setState({ dropdownValue: value })
-
+  inputChange = (ev) => this.setState({ inputValue: ev.target.value });
+  toggle = () => this.setState({ dropdownOpen: !this.state.dropdownOpen });
+  getValue = (value) => this.setState({ dropdownValue: value });
+  getDisplayType = (value) => this.setState({ displayType: value });
 
   render() {
     const { manufacturersData } = this.props;
-    const { inputValue, dropdownValue } = this.state;
+    const { inputValue, dropdownValue, displayType } = this.state;
 
-    const sortedList = sort( manufacturersData, dropdownValue )
-    console.log('sortedList :>> ', sortedList);
-    // console.log('manufacturersData :>> ', manufacturersData);
+        // console.log('manufacturersData :>> ', manufacturersData);
     return (
       <Container>
         <Title>
@@ -58,13 +55,19 @@ export class CompareWizard extends PureComponent {
         <AdjustmentSection>
           <SearchBar color={'#7E7E7E'} onChange={this.inputChange} />
           <Dropdown getValue={this.getValue} />
+          <DisplayGroup getDisplayType={this.getDisplayType}/>
         </AdjustmentSection>
         <ModelsSection>
           <ManufacturersList
             listData={manufacturersData}
-            search={(item, searchStr) => !!item.manufacturer.toLowerCase().match(new RegExp(searchStr.toLowerCase()))}
+            search={(item, searchStr) =>
+              !!item.manufacturer
+                .toLowerCase()
+                .match(new RegExp(searchStr.toLowerCase()))
+            }
             searchStr={inputValue}
             sortBy={dropdownValue}
+            display={displayType}
           />
         </ModelsSection>
       </Container>

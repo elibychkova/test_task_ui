@@ -4,7 +4,6 @@ import { StyledDropdownToggle } from './Styles';
 
 export const Dropdown = ({ getValue }) => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    // const [selectedItem, setSelectedItem] = useState(dropdownValue);
 
     const toggle = () => setDropdownOpen(prevState => !prevState);
     const handleChange = (ev) => {

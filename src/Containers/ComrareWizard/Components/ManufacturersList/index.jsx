@@ -6,8 +6,11 @@ import {
     Img,
     Name
 } from './Styles';
+import { sort } from '../../Utils';
 
-export const ManufacturersList = ({ listData, search, searchStr, sortBy }) => {
+export const ManufacturersList = ({ listData, search, searchStr, display, sortBy }) => {
+    console.log('display :>> ', display);
+    sort(listData, sortBy);
     return (
         <ManufacturersContainer>
             {listData
