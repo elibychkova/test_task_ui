@@ -1,15 +1,19 @@
 import React from 'react';
-import { StyledStepButton, LabelContainer, Circle } from './Styles';
+import { StyledSearchBar, StyledIcon, StyledInput } from './Styles';
 
-export const StepButton = ({ step, label }) => {
+export const SearchBar = ({ onChange, value, color, onKeyPress }) => {
   return (
-    <StyledStepButton>
-      <LabelContainer>
-        <Circle>{step}</Circle>
-        {label}
-      </LabelContainer>
-    </StyledStepButton>
+    <StyledSearchBar>
+      <StyledIcon color={color} />
+      <StyledInput
+        color={color}
+        placeholder="Search"
+        onChange={onChange}
+        value={value}
+        onKeyPress={onKeyPress}
+      />
+    </StyledSearchBar>
   );
 };
 
-export default StepButton;
+export default SearchBar;

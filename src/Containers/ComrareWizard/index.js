@@ -1,33 +1,44 @@
 import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { getManufacturers } from '../../Store/Actions/compareWizard.thunk';
 import { getManufacturersData } from '../../Store/Selectors/CompareWizard';
 import {
   Container,
   ModelsSection,
-  ManufacturersContainer,
-  Item,
-  Img,
-  ImgContainer,
-  Name,
   Title,
   StepsSection,
   ActionSection,
   ActionContainer,
+  AdjustmentSection,
 } from './Styles';
-import { StepButton, ActionButton } from './Components';
+import { StepButton, ActionButton, SearchBar, Dropdown } from './Components';
+import { ManufacturersList } from './Components/ManufacturersList';
+import { sort } from './Utils';
 
 export class CompareWizard extends PureComponent {
+
+  state = {
+    inputValue: '',
+    dropdownValue: 'asc',
+  }
+
   componentDidMount() {
     this.props.getManufacturers();
   }
 
+  inputChange = (ev) => this.setState({ inputValue: ev.target.value })
+  toggle = () => this.setState({ dropdownOpen: !this.state.dropdownOpen })
+  getValue = (value) => this.setState({ dropdownValue: value })
+
+
   render() {
     const { manufacturersData } = this.props;
-    console.log('manufacturersData :>> ', manufacturersData);
+    const { inputValue, dropdownValue } = this.state;
 
+    const sortedList = sort( manufacturersData, dropdownValue )
+    console.log('sortedList :>> ', sortedList);
+    // console.log('manufacturersData :>> ', manufacturersData);
     return (
       <Container>
         <Title>
@@ -40,29 +51,21 @@ export class CompareWizard extends PureComponent {
         </StepsSection>
         <ActionSection>
           <ActionContainer>
-            <span>{manufacturersData.data.length} Manufacturers available</span>
+            <span>{manufacturersData.length} Manufacturers available</span>
             <ActionButton label="Select model" />
           </ActionContainer>
         </ActionSection>
         <AdjustmentSection>
-          
+          <SearchBar color={'#7E7E7E'} onChange={this.inputChange} />
+          <Dropdown getValue={this.getValue} />
         </AdjustmentSection>
         <ModelsSection>
-          <ManufacturersContainer>
-            {manufacturersData.data.map((manufacturer, index) => {
-              return (
-                <Item key={index}>
-                  <ImgContainer>
-                    <Img
-                      src={`/assets/${manufacturer.logo}`}
-                      alt={manufacturer.manufacturer}
-                    />
-                  </ImgContainer>
-                  <Name>{manufacturer.manufacturer}</Name>
-                </Item>
-              );
-            })}
-          </ManufacturersContainer>
+          <ManufacturersList
+            listData={manufacturersData}
+            search={(item, searchStr) => !!item.manufacturer.toLowerCase().match(new RegExp(searchStr.toLowerCase()))}
+            searchStr={inputValue}
+            sortBy={dropdownValue}
+          />
         </ModelsSection>
       </Container>
     );
@@ -72,7 +75,7 @@ export class CompareWizard extends PureComponent {
 export default withRouter(
   connect(
     (state) => ({
-      manufacturersData: getManufacturersData(state),
+      manufacturersData: getManufacturersData(state).data,
     }),
     {
       getManufacturers,

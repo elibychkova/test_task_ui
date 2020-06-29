@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 export const StyledStepButton = styled.button`
   width: 30%;
@@ -69,21 +71,34 @@ export const StyledActionButton = styled.button`
   color: #393939;
 `;
 
-export const StyledInput = styled.input`
-  height: 45px;
-  width: 250px;
+export const StyledSearchBar = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  border-radius: 5%;
-  background: #ffe600;
+  width: 307px;
+  height: 42px;
+  border: 1px solid #C9C9C9;
+  box-sizing: border-box;
+  border-radius: 6px; 
+`;
 
-  outline: 0;
+export const StyledIcon = styled(FontAwesomeIcon).attrs({
+  icon: faSearch
+})`
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 500 !important;
+  margin: 0 8px;
+`;
+
+export const StyledInput = styled.input`
   border: none;
-
-  font-family: Roboto;
-  font-weight: bold;
-  font-size: 16px;
-
-  color: #393939;
+  min-width: 50px;
+  width: 100%;
+  font-size: 12px;
+  outline:none;
+  color: ${({ color }) => color};
+  &::placeholder {
+    color: ${({ color }) => color};
+  }
 `;
