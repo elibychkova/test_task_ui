@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, memo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
   GridDisplay,
   //   Item,
@@ -12,6 +14,8 @@ import {
 import { sort } from '../../Utils';
 import { Item } from '../Item';
 import moment from 'moment';
+import * as actions from '../../../../Store/Actions/compareWizard.action';
+import { selected } from '../../../../Store/Selectors/CompareWizard';
 
 export const ManufacturersList = ({
   listData,
@@ -20,16 +24,16 @@ export const ManufacturersList = ({
   display,
   sortBy,
 }) => {
-  const selectedItems = new Set();
-  const changeValue = (selectId) => {
-    if (selectedItems.has(selectId)) {
-      selectedItems.delete(selectId);
-    } else {
-      selectedItems.add(selectId);
-    }
-  };
-  console.log('selectedItems :>> ', selectedItems);
-
+  const dispatch = useDispatch();
+  const filtered = useSelector(selected);
+  const changeValue = useCallback(
+    (newItem) => {
+      dispatch({ type: actions.setSelectedManufactures, payload: newItem });
+    },
+    [dispatch]
+  );
+  
+  console.log('filtered :>> ', filtered);
   sort(listData, sortBy);
   return display === 'grid' ? (
     <GridDisplay>
@@ -84,4 +88,4 @@ export const ManufacturersList = ({
   );
 };
 
-export default ManufacturersList;
+export default memo(ManufacturersList);
